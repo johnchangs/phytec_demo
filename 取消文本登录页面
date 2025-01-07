@@ -1,0 +1,4 @@
+getty@.service
+
+systemctl enable getty@.service
+systemctl disable getty@.service
