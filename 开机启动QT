@@ -1,0 +1,3 @@
+phytec-qtdemo.service
+systemctl disable phytec-qtdemo.service
+systemctl enable phytec-qtdemo.service
