@@ -1,0 +1,17 @@
+3.居中全屏显示
+  （1）修改源码/driver/video/fbdev/core/fbmem.c中的fb_show_logo_line函数
+
+    //image.dx=0;
+    //image.dy=y;
+    image.width = logo->width;
+    image.heigh = logo->height;
+  增加
+   +image.dx = (info->var.xres / 2) - (image.width / 2);
+   +image.dy = (info->var.yres / 2) - (image.height / 2);
+
+  (2)修改源码/driver/video/console/fbcon.c中的fbcon_prepare_logo()函数
+
+   在logo_height = fb_prepare_logo(info, ops->rotate);后增加下面一行代码
+     +logo_height += (info->var.yres / 2) - (logo_height / 2);
+
+经过以上方式重新编译内核启动就会看到修改的内核logo能够居中全屏显示了。
